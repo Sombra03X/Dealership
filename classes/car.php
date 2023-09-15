@@ -121,27 +121,25 @@ class Car{
     public function read() {
         // Define the query
         $sql = "SELECT * FROM cars";
-
+    
         try {
             // Prepare the statement
             $stmt = $this->conn->prepare($sql);
-
+    
             // Execute the prepared statement
             $stmt->execute();
-
-            // Get the result
-            $result = $stmt->get_result();
-
+    
             // Fetch the results as an associative array
-            $cars = $result->fetch_all(MYSQLI_ASSOC);
-
+            $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
             // Return the results
             return $cars;
-        } catch (Exception $e) {
+        } catch (PDOException $e) {
             // Handle any exceptions here
             echo "Error: " . $e->getMessage();
         }
     }
+    
 
     public function update(){
         // Define the query

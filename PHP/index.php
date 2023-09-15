@@ -11,6 +11,7 @@
     <nav id="nav">
         <ul>
             <li><a href="./createCar.php">create</a></li>
+            <li><a href="./readCar.php">read</a></li>
             <li><a href="./updateCar.php">update</a></li>
             <li><a href="./deleteCar.php">delete</a></li>
         </ul>
