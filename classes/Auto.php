@@ -90,12 +90,51 @@ class car{
         $this->id = $id;
     }
 
-     // crud methods require once dbh.php and prepared statements
-        public function create(){
-            require_once 'dbh.php';
-            $sql = "INSERT INTO cars (make, model, year, color, price, image, description) VALUES (:make, :model, :year, :color, 
-            :price, :image, :description)";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute([$this->make, $this->model, $this->year, $this->color, $this->price, $this->image, $this->description]);
+    // crud functions
+    // create
+    public function create(){
+        require_once 'dbh.php';
+        $sql = "INSERT INTO cars (make, model, year, color, price, image, description) VALUES (:make, :model, :year, :color, 
+        :price, :image, :description)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$this->make, $this->model, $this->year, $this->color, $this->price, $this->image, $this->description]);
     }
+
+    // read
+    public static function read(){
+        require_once 'dbh.php';
+        $sql = "SELECT * FROM cars";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $cars;
+    }
+
+    // update
+    public function update(){
+        require_once 'dbh.php';
+        $sql = "UPDATE cars SET make = :make, model = :model, year = :year, color = :color, price = :price, image = :image, 
+        description = :description WHERE id = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$this->make, $this->model, $this->year, $this->color, $this->price, $this->image, $this->description, $this->id]);
+    }
+
+    // delete
+    public static function delete($id){
+        require_once 'dbh.php';
+        $sql = "DELETE FROM cars WHERE id = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$id]);
+    }
+
+    // search on ID
+    public static function search($id){
+        require_once 'dbh.php';
+        $sql = "SELECT * FROM cars WHERE id = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$id]);
+        $car = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $car;
+    }
+
 }
