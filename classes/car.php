@@ -113,7 +113,7 @@ class Car{
             // Execute the prepared statement
             $stmt->execute();
         } catch (Exception $e) {
-            // Handle any exceptions here
+            // Handle exceptions
             echo "Error: " . $e->getMessage();
         }
     }
@@ -129,13 +129,13 @@ class Car{
             // Execute the prepared statement
             $stmt->execute();
     
-            // Fetch the results as an associative array
+            // Fetch the results
             $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
             // Return the results
             return $cars;
         } catch (PDOException $e) {
-            // Handle any exceptions here
+            // Handle exceptions
             echo "Error: " . $e->getMessage();
         }
     }

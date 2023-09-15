@@ -21,17 +21,17 @@
         </thead>
         <tbody>
             <?php
-            // Include the external database connection file
+            // database connection file
             include "../classes/dbh.php";
 
-            // Include your Car class file
+            // Include Car class file
             include "../classes/car.php";
 
             try {
-                // Create a new Car object with the database connection
+                // Create a new Car object
                 $car = new Car(null, null, null, null, null, null, null, null, $conn);
 
-                // Call the read function to retrieve car data
+                // Call the read function
                 $cars = $car->read();
 
                 // Loop through the car data and generate table rows
