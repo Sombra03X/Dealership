@@ -143,40 +143,48 @@ class Car{
 
     public function update(){
         // Define the query
-        $sql = "UPDATE cars SET make = :make, model = ?, year = ?, color = ?, price = ?, image = ?, description = ? WHERE id = ?";
-
+        $sql = "UPDATE cars SET make = :make, model = :model, year = :year, color = :color, price = :price, image = :image, 
+        description = :description WHERE id = :id";
+    
         try{
-            // prepare the statement
+            // prepare statement
             $stmt = $this->conn->prepare($sql);
-
-            // bind parameters to the placeholders
-            $stmt->bind_param("ssisissi", $this->make, $this->model, $this->year, $this->color, $this->price, $this->image, $this->description, $this->id);
-
-            // Execute the prepared statement
+    
+            // bind parameters to placeholders
+            $stmt->bindParam(':make', $this->make);
+            $stmt->bindParam(':model', $this->model);
+            $stmt->bindParam(':year', $this->year);
+            $stmt->bindParam(':color', $this->color);
+            $stmt->bindParam(':price', $this->price);
+            $stmt->bindParam(':image', $this->image);
+            $stmt->bindParam(':description', $this->description);
+            $stmt->bindParam(':id', $this->id);
+    
+            // Execute prepared statement
             $stmt->execute();
         } catch (Exception $e) {
-            // Handle any exceptions here
+            // Handle exceptions
             echo "Error: " . $e->getMessage();
-
         }
     }
+    
 
     public function delete(){
         // define the query
-        $sql = "DELETE FROM cars WHERE id = ?";
-
-        // bind parameters to the placeholders
-        $stmt->bind_param("i", $this->id);
-
+        $sql = "DELETE FROM cars WHERE id = :id";
+    
         try{
             // prepare the statement
             $stmt = $this->conn->prepare($sql);
-
+    
+            // bind parameters to the placeholders
+            $stmt->bindParam(':id', $this->id);
+    
             // Execute the prepared statement
             $stmt->execute();
         } catch (Exception $e) {
             // Handle any exceptions here
             echo "Error: " . $e->getMessage();
         }
-    }
+    }    
 }
