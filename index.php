@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <
     <link href='../CSS/styles.css' rel='stylesheet' type='text/css'>
     <title>Lamborghini</title>
 </head>
 <body>
     <nav id="nav">
         <ul>
-            <li><a href="./createCar.php">create</a></li>
-            <li><a href="./readCar.php">read</a></li>
-            <li><a href="./updateCar.php">update</a></li>
-            <li><a href="./deleteCar.php">delete</a></li>
+            <li><a href="PHP/createCar.php">create</a></li>
+            <li><a href="PHP/readCar.php">read</a></li>
         </ul>
     </nav>
 

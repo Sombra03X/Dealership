@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Include the car class definition and database connection
+    // Require the car class definition and database connection
     require_once '../classes/dbh.php';
     require_once '../classes/car.php';
 

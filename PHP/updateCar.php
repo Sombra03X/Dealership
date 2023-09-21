@@ -1,72 +1,87 @@
 <?php
-    // Check if the car ID is provided in the URL
-    if (isset($_GET['id'])) {
-        // Retrieve the car details based on the ID
-        $carId = $_GET['id'];
-        
-        // You should have a function to fetch car details by ID from your database
-        // For this example, let's assume you have a function named getCarById
-        // This function should return an instance of the Car class with car details
-        $car = getCarById($carId);
-    }
-    
-    // Check if the form is submitted
-    if (isset($_POST['update'])) {
-        // Get updated values from the form
-        $make = $_POST['make'];
-        $model = $_POST['model'];
-        $year = $_POST['year'];
-        $color = $_POST['color'];
-        $price = $_POST['price'];
-        $image = $_POST['image'];
-        $description = $_POST['description'];
+require_once "../classes/dbh.php";
+require_once "../classes/car.php";
 
-        // Update the car object with the new values
-        $car->setMake($make);
-        $car->setModel($model);
-        $car->setYear($year);
-        $car->setColor($color);
-        $car->setPrice($price);
-        $car->setImage($image);
-        $car->setDescription($description);
+// Check if the ID parameter is present in the URL
+if (isset($_GET['id'])) {
+    // Retrieve the car ID from the URL parameter
+    $carId = $_GET['id'];
 
-        // Call the update method to update the car in the database
-        $car->update();
+    // Create a new Car object and fetch the existing car record
+    $car = new Car(null, null, null, null, null, null, null, $carId, $conn);
+    $existingCar = $car->readById();
+
+    // Check if the car record exists
+    if ($existingCar) {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])) {
+            // Check if the "Update" button was clicked
+
+            // Retrieve and validate form data
+            $make = $_POST["make"];
+            $model = $_POST["model"];
+            $year = $_POST["year"];
+            $color = $_POST["color"];
+            $price = $_POST["price"];
+            $image = $_POST["image"];
+            $description = $_POST["description"];
+
+            // Update the Car object with the new data
+            $car->setMake($make);
+            $car->setModel($model);
+            $car->setYear($year);
+            $car->setColor($color);
+            $car->setPrice($price);
+            $car->setImage($image);
+            $car->setDescription($description);
+
+            // Call the update method
+            $car->update();
+
+            // Redirect to readCar.php
+            echo "Car record updated successfully. <br>";
+            echo "<a href='readCar.php'>Back to car list</a>";
+            exit();
+        }
+    } else {
+        echo "Car record not found.";
     }
-    ?>
-    
+} else {
+    echo "Car ID not provided.";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update Car Information</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Car Record</title>
 </head>
 <body>
-    <h1>Update Car Information</h1>
-    <form method="POST">
-        <input type="hidden" name="id" value="<?php echo $car->getId(); ?>">
+    <h1>Update Car Record</h1>
+    <form action="" method="post">
         <label for="make">Make:</label>
-        <input type="text" id="make" name="make" value="<?php echo $car->getMake(); ?>"><br>
-        
+        <input type="text" id="make" name="make" value="<?php echo $existingCar['make']; ?>" required><br>
+
         <label for="model">Model:</label>
-        <input type="text" id="model" name="model" value="<?php echo $car->getModel(); ?>"><br>
-        
+        <input type="text" id="model" name="model" value="<?php echo $existingCar['model']; ?>" required><br>
+
         <label for="year">Year:</label>
-        <input type="text" id="year" name="year" value="<?php echo $car->getYear(); ?>"><br>
-        
+        <input type="text" id="year" name="year" value="<?php echo $existingCar['year']; ?>" required><br>
+
         <label for="color">Color:</label>
-        <input type="text" id="color" name="color" value="<?php echo $car->getColor(); ?>"><br>
-        
+        <input type="text" id="color" name="color" value="<?php echo $existingCar['color']; ?>" required><br>
+
         <label for="price">Price:</label>
-        <input type="text" id="price" name="price" value="<?php echo $car->getPrice(); ?>"><br>
-        
-        <label for="image">Image URL:</label>
-        <input type="text" id="image" name="image" value="<?php echo $car->getImage(); ?>"><br>
-        
+        <input type="text" id="price" name="price" value="<?php echo $existingCar['price']; ?>" required><br>
+
+        <label for="image">Image:</label>
+        <input type="text" id="image" name="image" value="<?php echo $existingCar['image']; ?>"><br>
+
         <label for="description">Description:</label>
-        <textarea id="description" name="description"><?php echo $car->getDescription(); ?></textarea><br>
-        
-        <input type="submit" name="update" value="Update">
+        <textarea id="description" name="description"><?php echo $existingCar['description']; ?></textarea><br>
+
+        <button type="submit" name="update">Update Car</button>
     </form>
 </body>
 </html>

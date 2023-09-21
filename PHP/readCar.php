@@ -6,6 +6,14 @@
     <title>Car Listing</title>
 </head>
 <body>
+<nav id="nav">
+        <ul>
+            <li><a href="../index.php">home</a></li>
+            <li><a href="createCar.php">create</a></li>
+            <li><a href="">read</a></li>
+        </ul>
+    </nav>
+
     <h1>Car Listing</h1>
     <table>
         <thead>
@@ -17,6 +25,7 @@
                 <th>Price</th>
                 <th>Image</th>
                 <th>Description</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -44,6 +53,14 @@
                     echo "<td>" . $car['price'] . "</td>";
                     echo "<td>" . $car['image'] . "</td>";
                     echo "<td>" . $car['description'] . "</td>";
+                    
+                    // Add Update and Delete buttons with links to appropriate actions
+                    echo '<td>';
+                    echo '<a href="updateCar.php?id=' . $car['id'] . '">Update</a>';
+                    echo ' | ';
+                    echo '<a href="deleteCar.php?id=' . $car['id'] . '">Delete</a>';
+                    echo '</td>';
+                    
                     echo "</tr>";
                 }
             } catch (PDOException $e) {

@@ -139,6 +139,31 @@ class Car{
             echo "Error: " . $e->getMessage();
         }
     }
+
+    public function readById(){
+        // Define the query
+        $sql = "SELECT * FROM cars WHERE id = :id";
+
+        try {
+            // Prepare the statement
+            $stmt = $this->conn->prepare($sql);
+
+            // Bind parameters to the placeholder
+            $stmt->bindParam(':id', $this->id);
+
+            // Execute the prepared statement
+            $stmt->execute();
+
+            // Fetch the results
+            $car = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Return the results
+            return $car;
+        } catch (PDOException $e) {
+            // Handle exceptions
+            echo "Error: " . $e->getMessage();
+        }
+    }
     
 
     public function update(){
