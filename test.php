@@ -8,6 +8,7 @@ if (!isset($_SESSION['username'])) {
     	<h2>Profile Check/Update</h2>
 <?php }
 require "classes/Users.php";
+require "classes/dbh.php";
     $user1 = new User();
     $user1->readUser();
 		?>
