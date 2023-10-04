@@ -155,41 +155,41 @@ class User
     public function readUser()
     {
         try {
-        require "dbh.php";
-        
-        if (!isset($_SESSION['email'])) {
-            // if not logged in (email doesnt exist in session)
+            require "dbh.php";
             
-            echo '<p> You are not logged in! Please login at <a href="index.php">our login page</a>!</p>';
-        }else{
-            //if logged in, continue
-            
-            $sesuser = $_SESSION['email'];
-            // create statement to select info from the database based on session's email
-            $sql = $conn->prepare("
+            if (!isset($_SESSION['email'])) {
+                // if not logged in (email doesnt exist in session)
+                
+                echo '<p> You are not logged in! Please login at <a href="index.php">our login page</a>!</p>';
+            }else{
+                //if logged in, continue
+                
+                $sesuser = $_SESSION['email'];
+                // create statement to select info from the database based on session's email
+                $sql = $conn->prepare("
                                          SELECT id, firstname, lastname, password, email, phone, role from users
                                          WHERE email = :email
                                          ");
-            $sql->bindParam(":email", $sesuser);
-            $sql->execute();
-            
-            // Retrieve the user record from the database
-            $user = $sql->fetch(PDO::FETCH_ASSOC);
-            
-            {
-                echo $user['id'];
-                echo $user['firstname'];
-                echo $user['lastname'];
-                echo $user['password'];
-                echo $user['email'];
-                echo $user['phone'];
-                if ($user['role'] == 1){
-                    echo'water';
-                }else{
-                    echo'fire';
+                $sql->bindParam(":email", $sesuser);
+                $sql->execute();
+                
+                // Retrieve the user record from the database
+                $user = $sql->fetch(PDO::FETCH_ASSOC);
+                
+                {
+                    echo $user['id'];
+                    echo $user['firstname'];
+                    echo $user['lastname'];
+                    echo $user['password'];
+                    echo $user['email'];
+                    echo $user['phone'];
+                    if ($user['role'] == 1){
+                        echo'water';
+                    }else{
+                        echo'fire';
+                    }
                 }
             }
-        }
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
