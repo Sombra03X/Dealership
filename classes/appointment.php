@@ -103,4 +103,7 @@ class Appointment{
 
     // methods
     // create
+    public funtion create{
+        
+    }
 }
