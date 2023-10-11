@@ -81,6 +81,7 @@ if (isset($_GET['id'])) {
         <label for="description">Description:</label>
         <textarea id="description" name="description"><?php echo $existingCar['description']; ?></textarea><br>
 
+        <a href="readCar.php">Cancel</a>
         <button type="submit" name="update">Update Car</button>
     </form>
 </body>

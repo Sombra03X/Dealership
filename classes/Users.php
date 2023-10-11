@@ -194,6 +194,7 @@ class User
             echo "Connection failed: " . $e->getMessage();
         }
     }
+    
     public function updateUser($id)
     {
         try {

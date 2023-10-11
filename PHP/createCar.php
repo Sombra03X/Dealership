@@ -1,4 +1,5 @@
 <?php
+include '../header.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Require the car class definition and database connection
     require_once '../classes/dbh.php';
@@ -55,7 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="description">Description:</label>
             <textarea id="description" name="description" required></textarea><br>
 
-            <input type="submit" value="Create Car">
+            <button type=""><a href="../index.php">Cancel</a></button>
+            <button type="submit" name="Create Car">Create car</button>
         </form>
 
     </body>
