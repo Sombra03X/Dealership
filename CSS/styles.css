@@ -32,7 +32,7 @@ a {
 }
 
 main {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
@@ -49,4 +49,8 @@ p {
   font-size: 18px;
   line-height: 1.6;
   color: #666;
+}
+
+td {
+  padding: 10px;
 }/*# sourceMappingURL=styles.css.map */

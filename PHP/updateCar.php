@@ -1,4 +1,5 @@
 <?php
+include "../header.php";
 require_once "../classes/dbh.php";
 require_once "../classes/car.php";
 
@@ -58,6 +59,7 @@ if (isset($_GET['id'])) {
     <title>Update Car Record</title>
 </head>
 <body>
+    <main>
     <h1>Update Car Record</h1>
     <form action="" method="post">
         <label for="make">Make:</label>
@@ -84,5 +86,6 @@ if (isset($_GET['id'])) {
         <a href="readCar.php">Cancel</a>
         <button type="submit" name="update">Update Car</button>
     </form>
+</main>
 </body>
 </html>

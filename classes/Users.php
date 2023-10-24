@@ -119,7 +119,7 @@ class User
                 // if email in use, give warning and redirect to ../index (gotta be changed)
                 echo '' ?>
 		        <script type="text/javascript">
-                    window.open("../index.php","_self");
+                    window.open("/dealerhip/index.php","_self");
                     alert("Email is already taken!");
                 </script>
                 <?php ;
