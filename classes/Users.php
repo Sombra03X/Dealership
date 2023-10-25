@@ -98,7 +98,7 @@ class User
             
             // get inputs, make variables out of them
             $id = NULL; // auto inc.
-            $firstname = $this->firstname();
+            $firstname = $this->get_firstname();
             $lastname = $this->get_lastname();
             $password = $this->get_password();
             $email = $this->get_email();
@@ -107,17 +107,17 @@ class User
             // check if email is taken already
             $stmt = $conn->prepare("
                                   SELECT email
-                                  FROM email
+                                  FROM users
                                   WHERE email = :email
                               ");
             $stmt->execute(['email' => $email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            if ($email) {
+            if ($user) {
                 // if email in use, give warning and redirect to ../index (gotta be changed)
                 echo '' ?>
 		        <script type="text/javascript">
-                    window.open("/dealerhip/index.php","_self");
+                    window.open("../index.php","_self");
                     alert("Email is already taken!");
                 </script>
                 <?php ;
@@ -164,9 +164,10 @@ class User
                 $sesuser = $_SESSION['email'];
                 // create statement to select info from the database based on session's email
                 $sql = $conn->prepare("
-                                         SELECT id, firstname, lastname, password, email, phone, role from users
+                                         SELECT id, firstname, lastname, password, email, phone, role
+                                         FROM users
                                          WHERE email = :email
-                                         ");
+                                     ");
                 $sql->bindParam(":email", $sesuser);
                 $sql->execute();
                 
@@ -180,10 +181,8 @@ class User
                     echo $user['password'];
                     echo $user['email'];
                     echo $user['phone'];
-                    if ($user['role'] == 1){
-                        echo'water';
-                    }else{
-                        echo'fire';
+                    if ($user['role'] == 0){
+                        echo'Admin';
                     }
                 }
             }
