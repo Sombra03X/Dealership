@@ -10,11 +10,9 @@
             Aperiam corporis ratione aspernatur quasi, ducimus minima? Unde, in. Aliquam perferendis dignissimos, 
             ratione reiciendis cumque, repellat ducimus porro quos, nesciunt vero labore.
         </p>
-    <?php include 'footer.php'; ?>
         <a href="PHP/createUser.php">Create User</a>
         <a href="">Read User</a>
         <a href="">Update User</a>
         <a href="">Delete User</a>
     </main>
-</body>
-</html>
+    <?php include 'footer.php'; ?>
