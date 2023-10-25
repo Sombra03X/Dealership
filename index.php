@@ -1,13 +1,7 @@
 <?php include 'header.php'; ?>
-
-<<<<<<< Updated upstream
-    <title>Lamborghini</title>
-=======
 <head>
     <title>Lamborghini</title>
 </head>
-
->>>>>>> Stashed changes
 <body>
     <main>
         <h1>Home</h1>
@@ -16,9 +10,7 @@
             Aperiam corporis ratione aspernatur quasi, ducimus minima? Unde, in. Aliquam perferendis dignissimos, 
             ratione reiciendis cumque, repellat ducimus porro quos, nesciunt vero labore.
         </p>
-<<<<<<< Updated upstream
     <?php include 'footer.php'; ?>
-=======
         <a href="PHP/createUser.php">Create User</a>
         <a href="">Read User</a>
         <a href="">Update User</a>
@@ -26,4 +18,3 @@
     </main>
 </body>
 </html>
->>>>>>> Stashed changes

@@ -46,7 +46,7 @@ include '../header.php';
                         echo "<td>" . $car['model'] . "</td>";
                         echo "<td>" . $car['year'] . "</td>";
                         echo "<td>" . $car['color'] . "</td>";
-                        echo "<td>" . $car['price'] . "</td>";
+                        echo "<td> € " . $car['price'] . "</td>";
                         echo "<td>" . $car['description'] . "</td>";
                         echo "<td> <img id='img' src='" . $car['image'] . "'></td>";
                         

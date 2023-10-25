@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="description">Description:</label>
             <textarea id="description" name="description" required></textarea><br>
 
-            <button type=""><a href="../index.php">Cancel</a></button>
+            <a href="../index.php" class="button">Cancel</a>
             <button type="submit" name="Create Car">Create car</button>
         </form>
     </main>
