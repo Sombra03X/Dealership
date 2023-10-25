@@ -34,6 +34,7 @@ a{
 }
 
 main {
+    text-align: center;
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
@@ -53,6 +54,21 @@ p {
     color: #666;
 }
 
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th{
+    border-bottom: 3px solid rgb(123, 123, 123);
+}
+
 td{
     padding: 10px;
+    border-bottom: 3px solid rgb(123, 123, 123);
+}
+
+#img{
+    width: 230px;
+    height: 150px;
 }

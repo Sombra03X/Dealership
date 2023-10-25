@@ -48,7 +48,7 @@ include '../header.php';
                         echo "<td>" . $car['color'] . "</td>";
                         echo "<td>" . $car['price'] . "</td>";
                         echo "<td>" . $car['description'] . "</td>";
-                        echo "<td> <img src='" . $car['image'] . "'></td>";
+                        echo "<td> <img id='img' src='" . $car['image'] . "'></td>";
                         
                         // Add Update and Delete buttons with links to appropriate actions
                         echo '<td>';

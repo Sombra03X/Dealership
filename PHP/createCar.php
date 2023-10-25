@@ -37,9 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <main>
         <form action="<?php $_SERVER["PHP_SELF"]?>" method="post">
             <label for="make">Make:</label>
-            <select id="make" name="make" required>
-                <option value="Lamborghini">Lamborghini</option>
-            </select><br>
+            <input type="text" id="make" name="make" value="Lamborghini" readonly><br>
 
             <label for="model">Model:</label>
             <input type="text" id="model" name="model" required><br>
