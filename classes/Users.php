@@ -103,8 +103,6 @@ class User
             $password = $this->get_password();
             $email = $this->get_email();
             $phone = $this->get_phone();
-            $createdat = $this->get_createdat();
-            $role = $this->get_role();
             
             // check if email is taken already
             $stmt = $conn->prepare("
@@ -126,8 +124,8 @@ class User
 		    } else {
 		        // prepare statement to insert into database
 		        $sql = $conn->prepare("
-                                         INSERT INTO users (id, firstname, lastname, password, email, phone, role)
-                                         VALUES (:id, :firstname, :lastname, :password, :email, :phone, :role)
+                                         INSERT INTO users (id, firstname, lastname, password, email, phone)
+                                         VALUES (:id, :firstname, :lastname, :password, :email, :phone)
                                      ");
 		        // put variables into statement and execute
 		        $sql->bindParam(":id", $id);
@@ -136,7 +134,6 @@ class User
 		        $sql->bindParam(":password", $password);
 		        $sql->bindParam(":email", $email);
 		        $sql->bindParam(":phone", $phone);
-		        $sql->bindParam(":role", $role);
 		        $sql->execute();
 		        
 		        // notify successful creation + redirect to ../index
