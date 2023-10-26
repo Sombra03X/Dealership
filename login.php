@@ -1,9 +1,9 @@
 <?php
-require '../header.php';
+require 'header.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require "../classes/Users.php";    // connects to the User class
-    require "../classes/dbh.php";      // connects to the database
+    require "classes/Users.php";    // connects to the User class
+    require "classes/dbh.php";      // connects to the database
 
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <main>
             <p>Login successful.</p>
             <br>
-            <a class="button" href='/Dealership/index.php'>Back to home</a>
+            <a class="button" href='index.php'>Back to home</a>
         </main>
         <?php
     } else {

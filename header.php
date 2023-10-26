@@ -7,16 +7,25 @@ SESSION_START();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/Dealership/lamborghini.ico">
-    <link href="/Dealership/CSS/styles.css" type="text/css" rel="stylesheet">
+    <link rel="icon" href="lamborghini.ico">
+    <link href="CSS/styles.css" type="text/css" rel="stylesheet">
 </head>
 <body>
     <nav id="nav">
         <ul>
-            <li><a href="/Dealership/index.php">Home</a></li>
-            <li><a href="/Dealership/PHP/createCar.php">Create Car</a></li>
-            <li><a href="/Dealership/PHP/readCar.php">Read Car</a></li>
-            <li><a href="/Dealership/PHP/createUser.php">Register</a></li>
-            <li><a href="/Dealership/PHP/login.php">Login (NIL)</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="createCar.php">Create Car</a></li>
+            <li><a href="readCar.php">Read Car</a></li>
+            <li><a href="createUser.php">Register</a></li>
+            <li><a href="login.php">Login</a></li>
+            <?php 
+            if (!isset($_SESSION['email'])) {
+                echo "<li><a href='createUser.php'>Register</a></li>";
+            } else {
+                echo "<li>User Email: " . $_SESSION["email"] . "</li>";
+                echo "<li><a href='classes/logout.php'>Logout</a></li>";
+            }
+            ?>
         </ul>
     </nav>
+    <main>

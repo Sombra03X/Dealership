@@ -6,7 +6,7 @@ require 'header.php';
 if (!isset($_SESSION['username'])) {
     echo '<h2>If you are an user, please login at <a href="Login.php">our login page</a>. If not, please return to the <a href="Home.php">main page</a></h2>.';
 }else{
-    require "includes/User.php";
+    require "classes/Users.php";
     echo '<h2>Profile Check/Update</h2>';
     
     $user1 = new User();
@@ -15,5 +15,5 @@ if (!isset($_SESSION['username'])) {
 ?>
 </main>
 <?php 
-require '../footer.php';
+require 'footer.php';
 ?>

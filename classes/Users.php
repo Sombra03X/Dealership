@@ -158,7 +158,7 @@ class User
             $sesuser = $_SESSION['email'];
             // create statement to select info from the database based on session's email
             $sql = $conn->prepare("
-                                         SELECT id, firstname, lastname, password, email, phone, role
+                                         SELECT id, firstname, lastname, email, phone, role
                                          FROM users
                                          WHERE email = :email
                                      ");
@@ -169,12 +169,11 @@ class User
             $user = $sql->fetch(PDO::FETCH_ASSOC);
             
             {
-                echo "user id" . $user['id'];
-                echo $user['firstname'];
-                echo $user['lastname'];
-                echo $user['password'];
-                echo $user['email'];
-                echo $user['phone'];
+                echo "User ID: " . $user['id'] . "<br>";
+                echo $user['firstname'] . "<br>";
+                echo $user['lastname'] . "<br>";
+                echo $user['email'] . "<br>";
+                echo $user['phone'] . "<br>";
                 if ($user['role'] == 0){
                     echo'Admin';
                 }
