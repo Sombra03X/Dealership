@@ -83,10 +83,14 @@ form {
   label {
     font-weight: bold;
     margin-bottom: 0.5rem;
+    width: 100%;
   }
   
   input[type="text"],
   input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
   textarea {
     padding: 0.5rem;
     margin-bottom: 1rem;
@@ -106,6 +110,11 @@ form {
     text-decoration: none;
     text-align: center;
     transition: background-color 0.3s;
+
+    a {
+      text-decoration: none;
+      color: #fff;
+      }
   
     & + button {
       background-color: #ccc;
@@ -114,15 +123,10 @@ form {
     &:hover {
       background-color: darken(gray, 10%);
     }
-  }
-  
-  button[type="submit"] {
-    margin-top: 1rem;
-  }
-  
-  button a {
-    text-decoration: none;
-    color: #fff;
+
+    button[type="submit"] {
+      margin-top: 1rem;
+    }
   }
 
   .button {

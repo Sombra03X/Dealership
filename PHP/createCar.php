@@ -20,8 +20,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Call the create method to insert the car record into the database
     $car->create();
 
-    // Redirect to a success page or display a success message
-    header("../index.php");
+    // redirect to readCar.php
+    ?>
+    <main>
+        <p>Car record created successfully.</p>
+        <br>
+        <a class="button" href='readCar.php'>Back to car list</a>
+    </main>
+    <?php
     exit();
 }
 ?>

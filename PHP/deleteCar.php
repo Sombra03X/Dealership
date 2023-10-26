@@ -15,14 +15,18 @@ if (isset($_GET['id'])) {
     // Check if the car record exists
     if ($existingCar) {
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
-            // Check if the "Delete" button was clicked
+            // Check if the delete button was clicked
             
             // Call the delete method to delete the car record
             $car->delete();
 
-            // Redirect to a page after deletion (you can customize this)
-            echo "Car record deleted successfully. <br>";
-            echo "<a href='readCar.php'>Back to car list</a>";
+            // Redirect to a page after deletion
+            ?>
+            <main>
+            <p>Car record deleted successfully.</p> <br>
+            <a class="button" href='readCar.php'>Back to car list</a>
+            </main>
+            <?php
             exit();
         }
     } else {
