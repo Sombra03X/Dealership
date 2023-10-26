@@ -153,37 +153,30 @@ class User
     {
         try {
             require "dbh.php";
+            //if logged in, continue
             
-            if (!isset($_SESSION['email'])) {
-                // if not logged in (email doesnt exist in session)
-                
-                echo '<p> You are not logged in! Please login at <a href="index.php">our login page</a>!</p>';
-            }else{
-                //if logged in, continue
-                
-                $sesuser = $_SESSION['email'];
-                // create statement to select info from the database based on session's email
-                $sql = $conn->prepare("
+            $sesuser = $_SESSION['email'];
+            // create statement to select info from the database based on session's email
+            $sql = $conn->prepare("
                                          SELECT id, firstname, lastname, password, email, phone, role
                                          FROM users
                                          WHERE email = :email
                                      ");
-                $sql->bindParam(":email", $sesuser);
-                $sql->execute();
-                
-                // Retrieve the user record from the database
-                $user = $sql->fetch(PDO::FETCH_ASSOC);
-                
-                {
-                    echo $user['id'];
-                    echo $user['firstname'];
-                    echo $user['lastname'];
-                    echo $user['password'];
-                    echo $user['email'];
-                    echo $user['phone'];
-                    if ($user['role'] == 0){
-                        echo'Admin';
-                    }
+            $sql->bindParam(":email", $sesuser);
+            $sql->execute();
+            
+            // Retrieve the user record from the database
+            $user = $sql->fetch(PDO::FETCH_ASSOC);
+            
+            {
+                echo "user id" . $user['id'];
+                echo $user['firstname'];
+                echo $user['lastname'];
+                echo $user['password'];
+                echo $user['email'];
+                echo $user['phone'];
+                if ($user['role'] == 0){
+                    echo'Admin';
                 }
             }
         } catch (PDOException $e) {
