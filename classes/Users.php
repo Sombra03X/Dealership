@@ -183,6 +183,21 @@ class User
             echo "Connection failed: " . $e->getMessage();
         }
     }
+
+    public static function getUserByEmail($email) {
+        require "dbh.php";
+    
+        $sql = $conn->prepare("
+            SELECT id, firstname, lastname, password, email, phone, role
+            FROM users
+            WHERE email = :email
+        ");
+        $sql->bindParam(":email", $email);
+        $sql->execute();
+    
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
+    
     
     public function updateUser($id)
     {

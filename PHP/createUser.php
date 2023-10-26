@@ -19,27 +19,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user->createUser();		//
 }
 ?>
-
+<main>
+	<h1>Register</h1>
+	<p>
+		Please fill in this form to create an account.
+	</p>
+	<hr>
 <form action="<?php $_SERVER["PHP_SELF"]?>" method="post">
 	<div>
 		<label>Firstname *</label>
+		<br>
 		<input placeholder="Enter your Firstname" type="text" name="firstname" required="">
+		<br>
 	</div>
+	<div>
 		<label>Lastname *</label>
+		<br>
 		<input placeholder="Enter your Lastname" type="text" name="lastname" required="">
+		<br>
 	</div>
+	<br>
 	<div>
 		<label>Password *</label>
+		<br>
 		<input placeholder="Enter your Password" type="password" name="password" required="">
 	</div>
+	<br>
+	<div>
 		<label>Email *</label>
-		<input placeholder="Enter your Username" type="text" name="email" required="">
+		<br>
+		<input placeholder="Enter your Email" type="email" name="email" required="">
 	</div>
+	<br>
 	<div>
 		<label>Phone *</label>
-		<input placeholder="Enter your Username" type="text" name="phone" required="">
+		<br>
+		<input placeholder="Enter your Mobile Number" type="tel" name="phone" required="">
 	</div>
-	<input type="submit" value="Register">
+	<br>
+	<div>
+	<button type="submit" value="Register">Create</button>
+	</div>
 </form>
-
-<a href="">Have an account? Login here!</a>
+<br>
+<a class="button" href="login.php">Have an account? Login here!</a>
+</main>

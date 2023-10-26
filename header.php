@@ -17,6 +17,6 @@ SESSION_START();
             <li><a href="/Dealership/PHP/createCar.php">Create Car</a></li>
             <li><a href="/Dealership/PHP/readCar.php">Read Car</a></li>
             <li><a href="/Dealership/PHP/createUser.php">Register</a></li>
-            <li><a href="">Login (NIL)</a></li>
+            <li><a href="/Dealership/PHP/login.php">Login (NIL)</a></li>
         </ul>
     </nav>
