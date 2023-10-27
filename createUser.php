@@ -2,8 +2,8 @@
 require 'header.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require "../classes/Users.php";	    // connects to the OOP file
-    require "../classes/dbh.php";	// connects to the database
+    require "classes/Users.php";	    // connects to the OOP file
+    require "classes/dbh.php";	// connects to the database
     
     //  -------------------------
     $id = NULL;	         // auto incremented; not an input value
