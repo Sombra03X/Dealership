@@ -1,4 +1,5 @@
 <?php
+include '../header.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Require the car class definition and database connection
     require_once '../classes/dbh.php';
@@ -19,8 +20,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Call the create method to insert the car record into the database
     $car->create();
 
-    // Redirect to a success page or display a success message
-    header("../index.php");
+    // redirect to readCar.php
+    ?>
+    <main>
+        <p>Car record created successfully.</p>
+        <br>
+        <a class="button" href='readCar.php'>Back to car list</a>
+    </main>
+    <?php
     exit();
 }
 ?>
@@ -33,9 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Lamborghini - Create</title>
 </head>
     <body>
+        <main>
         <form action="<?php $_SERVER["PHP_SELF"]?>" method="post">
             <label for="make">Make:</label>
-            <input type="text" id="make" name="make" required><br>
+            <input type="text" id="make" name="make" value="Lamborghini" readonly><br>
 
             <label for="model">Model:</label>
             <input type="text" id="model" name="model" required><br>
@@ -55,8 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="description">Description:</label>
             <textarea id="description" name="description" required></textarea><br>
 
-            <input type="submit" value="Create Car">
+            <a href="../index.php" class="button">Cancel</a>
+            <button type="submit" name="Create Car">Create car</button>
         </form>
-
+    </main>
     </body>
 </html>

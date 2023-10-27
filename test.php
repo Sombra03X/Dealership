@@ -13,3 +13,5 @@ require "classes/dbh.php";
     $user1 = new User();
     $user1->readUser();
 		?>
+		
+		

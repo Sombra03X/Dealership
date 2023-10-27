@@ -1,4 +1,5 @@
 <?php
+include "../header.php";
 require_once "../classes/dbh.php";
 require_once "../classes/car.php";
 
@@ -38,15 +39,26 @@ if (isset($_GET['id'])) {
             $car->update();
 
             // Redirect to readCar.php
-            echo "Car record updated successfully. <br>";
-            echo "<a href='readCar.php'>Back to car list</a>";
+            ?>
+            <main>
+                <p>Car record updated successfully.</p>
+                <br>
+                <a class="button" href='readCar.php'>Back to car list</a>
+            </main>
+            <?php
             exit();
         }
     } else {
-        echo "Car record not found.";
+        ?>
+        <main>
+        <p>Car record not found.</p>
+        </main>
+        <?php
     }
 } else {
-    echo "Car ID not provided.";
+    ?>
+    <p>Car ID not provided.</p>
+    <?php
 }
 ?>
 
@@ -58,6 +70,7 @@ if (isset($_GET['id'])) {
     <title>Update Car Record</title>
 </head>
 <body>
+    <main>
     <h1>Update Car Record</h1>
     <form action="" method="post">
         <label for="make">Make:</label>
@@ -81,7 +94,9 @@ if (isset($_GET['id'])) {
         <label for="description">Description:</label>
         <textarea id="description" name="description"><?php echo $existingCar['description']; ?></textarea><br>
 
+        <a class="button" href="readCar.php">Cancel</a>
         <button type="submit" name="update">Update Car</button>
     </form>
+</main>
 </body>
 </html>

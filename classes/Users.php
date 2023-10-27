@@ -98,24 +98,22 @@ class User
             
             // get inputs, make variables out of them
             $id = NULL; // auto inc.
-            $firstname = $this->firstname();
+            $firstname = $this->get_firstname();
             $lastname = $this->get_lastname();
             $password = $this->get_password();
             $email = $this->get_email();
             $phone = $this->get_phone();
-            $createdat = $this->get_createdat();
-            $role = $this->get_role();
             
             // check if email is taken already
             $stmt = $conn->prepare("
                                   SELECT email
-                                  FROM email
+                                  FROM users
                                   WHERE email = :email
                               ");
             $stmt->execute(['email' => $email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            if ($email) {
+            if ($user) {
                 // if email in use, give warning and redirect to ../index (gotta be changed)
                 echo '' ?>
 		        <script type="text/javascript">
@@ -126,8 +124,8 @@ class User
 		    } else {
 		        // prepare statement to insert into database
 		        $sql = $conn->prepare("
-                                         INSERT INTO users (id, firstname, lastname, password, email, phone, role)
-                                         VALUES (:id, :firstname, :lastname, :password, :email, :phone, :role)
+                                         INSERT INTO users (id, firstname, lastname, password, email, phone)
+                                         VALUES (:id, :firstname, :lastname, :password, :email, :phone)
                                      ");
 		        // put variables into statement and execute
 		        $sql->bindParam(":id", $id);
@@ -136,7 +134,6 @@ class User
 		        $sql->bindParam(":password", $password);
 		        $sql->bindParam(":email", $email);
 		        $sql->bindParam(":phone", $phone);
-		        $sql->bindParam(":role", $role);
 		        $sql->execute();
 		        
 		        // notify successful creation + redirect to ../index
@@ -155,21 +152,16 @@ class User
     public function readUser()
     {
         try {
-        require "dbh.php";
-        
-        if (!isset($_SESSION['email'])) {
-            // if not logged in (email doesnt exist in session)
-            
-            echo '<p> You are not logged in! Please login at <a href="index.php">our login page</a>!</p>';
-        }else{
+            require "dbh.php";
             //if logged in, continue
             
             $sesuser = $_SESSION['email'];
             // create statement to select info from the database based on session's email
             $sql = $conn->prepare("
-                                         SELECT id, firstname, lastname, password, email, phone, role from users
+                                         SELECT id, firstname, lastname, email, phone, role
+                                         FROM users
                                          WHERE email = :email
-                                         ");
+                                     ");
             $sql->bindParam(":email", $sesuser);
             $sql->execute();
             
@@ -177,23 +169,35 @@ class User
             $user = $sql->fetch(PDO::FETCH_ASSOC);
             
             {
-                echo $user['id'];
-                echo $user['firstname'];
-                echo $user['lastname'];
-                echo $user['password'];
-                echo $user['email'];
-                echo $user['phone'];
-                if ($user['role'] == 1){
-                    echo'water';
-                }else{
-                    echo'fire';
+                echo "User ID: " . $user['id'] . "<br>";
+                echo $user['firstname'] . "<br>";
+                echo $user['lastname'] . "<br>";
+                echo $user['email'] . "<br>";
+                echo $user['phone'] . "<br>";
+                if ($user['role'] == 0){
+                    echo'Admin';
                 }
             }
-        }
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
     }
+
+    public static function getUserByEmail($email) {
+        require "dbh.php";
+    
+        $sql = $conn->prepare("
+            SELECT id, firstname, lastname, password, email, phone, role
+            FROM users
+            WHERE email = :email
+        ");
+        $sql->bindParam(":email", $email);
+        $sql->execute();
+    
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    
     public function updateUser($id)
     {
         try {
