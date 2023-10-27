@@ -253,28 +253,26 @@ class User
         try {
         require "dbh.php";
         // gegevens uit het object in variabelen zetten
-        $id = NULL; // auto inc.
         $firstname = $this->get_firstname();
         $lastname = $this->get_lastname();
         $password = $this->get_password();
         $email = $this->get_email();
         $phone = $this->get_phone();
-        $createdat = $this->get_createdat();
-        $role = $this->get_role();
         
         // statement maken
         $sql = $conn->prepare("
 									 UPDATE users
-                                     SET id, firstname, lastname, password, email, phone
+                                     SET firstname=:firstname, lastname=:lastname, password=:password, email=:email, phone=:phone
 									 WHERE id=:id
 								 ");
         // variabelen in de statement zetten
-        $sql->bindParam(":id", $id);
+        // $passwordhash = password_hash($password, PASSWORD_DEFAULT); // hashes the password
         $sql->bindParam(":firstname", $firstname);
         $sql->bindParam(":lastname", $lastname);
-        $sql->bindParam(":password", $password);
+        $sql->bindParam(":password", $password);//hash);
         $sql->bindParam(":email", $email);
         $sql->bindParam(":phone", $phone);
+        $sql->bindParam(":id", $id);
         $sql->execute();
         header("location: logout.php");
         /*

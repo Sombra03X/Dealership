@@ -32,15 +32,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lamborghini - Create</title>
 </head>
-    <body>
-        <main>
+	<h1>Create Car</h1>
+	<p>
+		Please fill in this form to create a car.
+	</p>
+	<hr>
         <form action="<?php $_SERVER["PHP_SELF"]?>" method="post">
             <label for="make">Make:</label>
             <input type="text" id="make" name="make" value="Lamborghini" readonly><br>
@@ -67,6 +66,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <br>
             <button type="submit" name="Create Car">Create car</button>
         </form>
-    </main>
-    </body>
-</html>

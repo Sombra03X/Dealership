@@ -11,6 +11,7 @@ SESSION_START();
     <link href="CSS/styles.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+
     <nav id="nav">
         <ul>
             <li><a href="index.php">Home</a></li>
@@ -21,10 +22,11 @@ SESSION_START();
                 echo "<li><a href='createUser.php'>Register</a></li>";
                 echo "<li><a href='login.php'>Login</a></li>";
             } else {
-                echo "<li>User Email: " . $_SESSION["email"] . "</li>";
+                echo "<li><a href='readUser.php'>User Email: " . $_SESSION["email"] . "</a></li>";
                 echo "<li><a href='logout.php'>Logout</a></li>";
             }
             ?>
         </ul>
     </nav>
+    
     <main>

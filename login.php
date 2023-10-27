@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $email = $_POST["email"];
     $password = $_POST["password"];
+    $password = $_POST["password"];
 
     // Fetch the user by email from the database
     $user = User::getUserByEmail($email);
@@ -16,13 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //session_start();
         $_SESSION['email'] = $email;
         $_SESSION['role'] = $user['role'];
-        ?>
-        <main>
-            <p>Login successful.</p>
-            <br>
-            <a class="button" href='index.php'>Back to home</a>
-        </main>
-        <?php
+        header("location: index.php");
     } else {
         // Invalid login credentials
         ?>
@@ -35,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<main>
     <h1>Login</h1>
     <p>
         Please fill in this form to login.

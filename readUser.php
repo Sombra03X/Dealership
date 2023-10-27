@@ -13,11 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password =          password_hash($nohashpassword, PASSWORD_DEFAULT); // hashes the password
     $email =             $_POST["email"];
     $phone =             $_POST["phone"];
-    $createdat = NULL;	 // auto incremented; not an input value
-    $role =              $_POST["role"];
     
     // maken object ---------------------------------------------------
-    $user = new User($firstname, $lastname, $password, $email, $phone); // creates the object
+    $user = new User($firstname, $lastname, $password, $email, $phone, $id); // creates the object
     $user->updateUser($id);		//
 }
 
