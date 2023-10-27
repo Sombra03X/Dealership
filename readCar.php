@@ -52,9 +52,16 @@ include 'header.php';
                         
                         // Add Update and Delete buttons with links to appropriate actions
                         echo '<td>';
+                        if (isset($_SESSION['email']) && $_SESSION['role'] == '0') {
                         echo '<a href="updateCar.php?id=' . $car['id'] . '">Update</a>';
                         echo ' | ';
                         echo '<a href="deleteCar.php?id=' . $car['id'] . '">Delete</a>';
+                        }
+                        else if (isset($_SESSION['email']) && $_SESSION['role'] == '1') {
+                            echo '<a href="">Schedule appointment</a>';
+                        }
+                        else {
+                            echo '<a href="login.php">Login here to schedule an appointment</a>';}
                         echo '</td>';
                         
                         echo "</tr>";

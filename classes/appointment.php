@@ -103,7 +103,7 @@ class Appointment{
 
     // methods
     // create
-    public funtion createAppo(){
+    public function createAppo(){
         $sql = "INSERT INTO appointment (naam, email, phone, model, year, dateappo) VALUES (:naam, :email, :phone, :model, 
         :year, :dateappo)";
 
@@ -126,7 +126,7 @@ class Appointment{
             echo "Error: " . $e->getMessage();
         }
     }
-    public funtion readAppo(){
+    public function readAppo(){
         $sql = "SELECT * FROM appointment";
     
         try {
@@ -147,7 +147,7 @@ class Appointment{
         }
         
     }
-    public funtion updateAppo(){
+    public function updateAppo(){
         $sql = "UPDATE appointment SET naam = :naam, email = :email, phone = :phone, model = :model, year = :year, dateappo = :dateappo WHERE id = :id";
     
         try{
@@ -170,7 +170,7 @@ class Appointment{
             echo "Error: " . $e->getMessage();
         }
     }
-    public funtion deleteAppo(){
+    public function deleteAppo(){
         $sql = "DELETE FROM appointment WHERE id = :id";
     
         try{
@@ -187,6 +187,4 @@ class Appointment{
             echo "Error: " . $e->getMessage();
         }
     }    
-    }
-
 }
