@@ -4,12 +4,18 @@ include 'header.php';
 <head>
     <title>Lamborghini</title>
 </head>
-        <h1>Home</h1>
+        <h1>Welcome to Lamborghini - Where luxury meets performance</h1>
         <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-            Aperiam corporis ratione aspernatur quasi, ducimus minima? Unde, in. Aliquam perferendis dignissimos, 
-            ratione reiciendis cumque, repellat ducimus porro quos, nesciunt vero labore.
+        Are you ready to experience automotive excellence like never before?
+        <br>
+        Step into the world of Lamborghini, where precision engineering, breathtaking design, 
+        and unparalleled performance converge to create the ultimate driving experience.
+        <br>
+        At Lamborghini, we are passionate about these Italian masterpieces on wheels. Our showroom boasts the latest and most iconic Lamborghini models, each representing the pinnacle of automotive artistry. Whether you're an enthusiast, a collector, or someone looking to turn dreams into reality, you've come to the right place.
         </p>
-        <a href="createUser.php">Create User</a>
-        <a href="readUser.php">Read User</a>
+        <br><br><br>
+        <button id="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+<form id="theme-form" style="display: none;" method="post">
+    <input type="hidden" name="theme" id="theme-input" value="">
+</form>
     <?php include 'footer.php'; ?>

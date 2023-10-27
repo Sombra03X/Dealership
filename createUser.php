@@ -27,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<?php
 }
 ?>
-<main>
 	<h1>Register</h1>
 	<p>
 		Please fill in this form to create an account.
@@ -71,4 +70,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 <br>
 <a class="button" href="login.php">Have an account? Login here!</a>
-</main>

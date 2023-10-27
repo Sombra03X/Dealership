@@ -17,11 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['email'] = $email;
         $_SESSION['role'] = $user['role'];
         ?>
-        <main>
+        
             <p>Login successful.</p>
             <br>
             <a class="button" href='index.php'>Back to home</a>
-        </main>
+        
         <?php
     } else {
         // Invalid login credentials
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<main>
+
     <h1>Login</h1>
     <p>
         Please fill in this form to login.

@@ -45,13 +45,12 @@ if (isset($_GET['id'])) {
     <title>Delete Car Record</title>
 </head>
 <body>
-    <main>
         <h1>Delete Car Record</h1>
         <form action="" method="post">
             <p>Are you sure you want to delete this car record?</p>
-            <a href="readCar.php">Cancel</a>
+            <a class="button" href="readCar.php">Cancel</a>
+            <br>
             <button type="submit" name="delete">Delete Car</button>
         </form>
-    </main>
 </body>
 </html>
