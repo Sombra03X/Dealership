@@ -117,7 +117,7 @@ class User
                 // if email in use, give warning and redirect to ../index (gotta be changed)
                 echo '' ?>
 		        <script type="text/javascript">
-                    window.open("../index.php","_self");
+                    window.open("index.php","_self");
                     alert("Email is already taken!");
                 </script>
                 <?php ;
@@ -139,7 +139,7 @@ class User
 		        // notify successful creation + redirect to ../index
 		        echo '' ?>
 		        <script type="text/javascript">
-                    window.open("../index.php","_self");
+                    window.open("login.php","_self");
                     alert("Account registered! You can now login!");
                 </script>
                 <?php 
@@ -158,7 +158,7 @@ class User
             $sesuser = $_SESSION['email'];
             // create statement to select info from the database based on session's email
             $sql = $conn->prepare("
-                                         SELECT id, firstname, lastname, email, phone, role
+                                         SELECT id, firstname, lastname, email, phone, role, createdat
                                          FROM users
                                          WHERE email = :email
                                      ");
@@ -169,17 +169,61 @@ class User
             $user = $sql->fetch(PDO::FETCH_ASSOC);
             
             {
-                echo "User ID: " . $user['id'] . "<br>";
-                echo $user['firstname'] . "<br>";
-                echo $user['lastname'] . "<br>";
-                echo $user['email'] . "<br>";
-                echo $user['phone'] . "<br>";
                 if ($user['role'] == 0){
-                    echo'Admin';
+                    $role = "Admin";
                 }
                 else{
-                    echo'Client';
+                    $role = "Client";
                 }
+                echo ''?>
+			<form action="<?php $_SERVER["PHP_SELF"]?>" method="post">
+            <div>
+              <label for="name">Profile ID</label><br>
+              <input value="<?php echo $user['id']?>" readonly type="text" id="id" name="id" placeholder="User ID" required="">
+            </div>
+            <br>
+            <div>
+              <label for="name">First Name</label><br>
+              <input value="<?php echo $user['firstname']?>" type="text" id="firstname" name="firstname" placeholder="Front Name" required="">
+            </div>
+            <br>
+            <div>
+              <label for="name">Last Name</label><br>
+              <input value="<?php echo $user['lastname']?>"type="text" id="lastname" name="lastname" placeholder="Last Name" required="">
+            </div>
+            <br>
+            <div>
+              <label for="password">New Profile Password</label><br>
+              <input value=""type="password" id="password" name="password" placeholder="User Password" required="">
+            </div>
+            <br>
+            <div>
+              <label for="email">Email</label><br>
+              <input value="<?php echo $user['email']?>" type="email" id="email" name="email" placeholder="Email" required="">
+            </div>
+            <br>
+            <div>
+              <label for="phone">Phone Number</label><br>
+              <input value="<?php echo $user['phone']?>" type="text" id="phone" name="phone" placeholder="Phone Number" required="">
+            </div>
+            <br>
+            <div>
+              <label for="date">Created At</label><br>
+              <input value="<?php echo $user['createdat']?>" readonly id="createdat" name="createdat" placeholder="Created At" required="" type="text">
+            </div>
+            <br>
+            <div>
+              <label for="name">Role</label><br>
+              <input value="<?php echo $role ?>" readonly id="role" name="role" placeholder="Role" required="" type="text">
+            </div>
+            <br>
+              <input type="submit" value="Update: this will log you out!">
+            </form>
+          <br>
+          <form action="DeleteUser.php" method="post">
+			<input type="submit" value="Delete Account">
+		  </form>
+				<?php
             }
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
@@ -206,22 +250,30 @@ class User
         try {
         require "dbh.php";
         // gegevens uit het object in variabelen zetten
-        $username 	= $this->get_username();
-        $password1 	= $this->get_password();
+        $id = NULL; // auto inc.
+        $firstname = $this->get_firstname();
+        $lastname = $this->get_lastname();
+        $password = $this->get_password();
+        $email = $this->get_email();
+        $phone = $this->get_phone();
+        $createdat = $this->get_createdat();
+        $role = $this->get_role();
         
         // statement maken
         $sql = $conn->prepare("
-									 update users
-									 set username=:username, password=:password
-									 where id=:id
+									 UPDATE users
+                                     SET id, firstname, lastname, password, email, phone
+									 WHERE id=:id
 								 ");
         // variabelen in de statement zetten
-        $password = password_hash($password1, PASSWORD_DEFAULT); // Creates a password hash
-        $sql->bindParam(":username", $username);
-        $sql->bindParam(":password", $password);
         $sql->bindParam(":id", $id);
+        $sql->bindParam(":firstname", $firstname);
+        $sql->bindParam(":lastname", $lastname);
+        $sql->bindParam(":password", $password);
+        $sql->bindParam(":email", $email);
+        $sql->bindParam(":phone", $phone);
         $sql->execute();
-        header("location: includes/logout.inc.php");
+        header("location: logout.php");
         /*
          echo '<script type="text/javascript">
          window.open("checkuser.php","_self");
@@ -243,7 +295,7 @@ class User
             // variabele in de statement zetten
             $sql->bindParam(":username", $email);
             $sql->execute();
-            header("location: includes/logout.inc.php");
+            header("location: ../logout.php");
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }

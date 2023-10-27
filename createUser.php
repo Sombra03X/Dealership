@@ -2,8 +2,8 @@
 require 'header.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require "../classes/Users.php";	    // connects to the OOP file
-    require "../classes/dbh.php";	// connects to the database
+    require "classes/Users.php";	    // connects to the OOP file
+    require "classes/dbh.php";	// connects to the database
     
     //  -------------------------
     $id = NULL;	         // auto incremented; not an input value
@@ -46,9 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	</div>
 	<br>
 	<div>
-		<label>Email *</label>
+		<label for="email">Email *</label>
 		<br>
-		<input placeholder="Enter your Email" type="email" name="email" required="">
+		<input placeholder="Enter your Email" type="email" id="email" name="email" required="">
 	</div>
 	<br>
 	<div>
