@@ -103,7 +103,90 @@ class Appointment{
 
     // methods
     // create
-    public funtion create{
+    public funtion createAppo(){
+        $sql = "INSERT INTO appointment (naam, email, phone, model, year, dateappo) VALUES (:naam, :email, :phone, :model, 
+        :year, :dateappo)";
+
+        try {
+            // Prepare the statement
+            $prst = $this->conn->prepare($sql);
+
+            // Bind parameters to the placeholders
+            $prst->bindParam(':naam', $this->user_name);
+            $prst->bindParam(':email', $this->user_email);
+            $prst->bindParam(':phone', $this->user_phone);
+            $prst->bindParam(':model', $this->car_model);
+            $prst->bindParam(':year', $this->car_year);
+            $prst->bindParam(':dateappo', $this->appointment_date);
+
+            // Execute the prepared statement
+            $prst->execute();
+        } catch (Exception $e) {
+            // Handle exceptions
+            echo "Error: " . $e->getMessage();
+        }
+    }
+    public funtion readAppo(){
+        $sql = "SELECT * FROM appointment";
+    
+        try {
+            // Prepare the statement
+            $prst = $this->conn->prepare($sql);
+    
+            // Execute the prepared statement
+            $prst->execute();
+    
+            // Fetch the results
+            $appointments = $prst->fetchAll(PDO::FETCH_ASSOC);
+    
+            // Return the results
+            return $appointments;
+        } catch (PDOException $e) {
+            // Handle exceptions
+            echo "Error: " . $e->getMessage();
+        }
         
     }
+    public funtion updateAppo(){
+        $sql = "UPDATE appointment SET naam = :naam, email = :email, phone = :phone, model = :model, year = :year, dateappo = :dateappo WHERE id = :id";
+    
+        try{
+            // prepare statement
+            $prst = $this->conn->prepare($sql);
+    
+            // bind parameters to placeholders
+            $prst->bindParam(':id', $this->id);
+            $prst->bindParam(':naam', $this->user_name);
+            $prst->bindParam(':email', $this->user_email);
+            $prst->bindParam(':phone', $this->user_phone);
+            $prst->bindParam(':model', $this->car_model);
+            $prst->bindParam(':year', $this->car_year);
+            $prst->bindParam(':dateappo', $this->appointment_date);
+    
+            // Execute prepared statement
+            $prst->execute();
+        } catch (Exception $e) {
+            // Handle exceptions
+            echo "Error: " . $e->getMessage();
+        }
+    }
+    public funtion deleteAppo(){
+        $sql = "DELETE FROM appointment WHERE id = :id";
+    
+        try{
+            // prepare the statement
+            $prst = $this->conn->prepare($sql);
+    
+            // bind parameters to the placeholders
+            $prst->bindParam(':id', $this->id);
+    
+            // Execute the prepared statement
+            $prst->execute();
+        } catch (Exception $e) {
+            // Handle any exceptions here
+            echo "Error: " . $e->getMessage();
+        }
+    }    
+    }
+
 }
