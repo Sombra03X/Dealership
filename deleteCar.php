@@ -1,7 +1,7 @@
 <?php
 include "header.php";
-require_once "../classes/dbh.php";
-require_once "../classes/car.php";
+require_once "classes/dbh.php";
+require_once "classes/car.php";
 
 // Check if the ID parameter is present in the URL
 if (isset($_GET['id'])) {

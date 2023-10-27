@@ -2,8 +2,8 @@
 include 'header.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Require the car class definition and database connection
-    require_once '../classes/dbh.php';
-    require_once '../classes/car.php';
+    require_once 'classes/dbh.php';
+    require_once 'classes/car.php';
 
     // Retrieve form data
     $make = $_POST['make'];
@@ -64,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <textarea id="description" name="description" required></textarea><br>
 
             <a href="../index.php" class="button">Cancel</a>
+            <br>
             <button type="submit" name="Create Car">Create car</button>
         </form>
     </main>

@@ -1,8 +1,8 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Require the car class definition and database connection
-    require_once '../classes/dbh.php';
-    require_once '../classes/appointment.php';
+    require_once 'classes/dbh.php';
+    require_once 'classes/appointment.php';
 
     // Retrieve form data
     $user_name = $_POST['naam'];

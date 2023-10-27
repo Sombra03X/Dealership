@@ -16,7 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // maken object ---------------------------------------------------
     $user = new User($firstname, $lastname, $password, $email, $phone); // creates the object
-    $user->createUser();		//
+    $user->createUser();
+
+	?>
+	<main>
+		<p>Registration successful.</p>
+		<br>
+		<a class="button" href='readUser.php'>Inspect data</a>
+	</main>
+	<?php
 }
 ?>
 <main>

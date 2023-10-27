@@ -1,7 +1,7 @@
 <?php
 include "header.php";
-require_once "../classes/dbh.php";
-require_once "../classes/car.php";
+require_once "classes/dbh.php";
+require_once "classes/car.php";
 
 // Check if the ID parameter is present in the URL
 if (isset($_GET['id'])) {
@@ -95,6 +95,7 @@ if (isset($_GET['id'])) {
         <textarea id="description" name="description"><?php echo $existingCar['description']; ?></textarea><br>
 
         <a class="button" href="readCar.php">Cancel</a>
+        <br>
         <button type="submit" name="update">Update Car</button>
     </form>
 </main>

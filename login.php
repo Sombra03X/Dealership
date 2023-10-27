@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Password is correct, set session variables and redirect
         //session_start();
         $_SESSION['email'] = $email;
+        $_SESSION['role'] = $user['role'];
         ?>
         <main>
             <p>Login successful.</p>
