@@ -1,5 +1,5 @@
 <?php
-include '../header.php';
+include 'header.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Require the car class definition and database connection
     require_once '../classes/dbh.php';

@@ -1,5 +1,5 @@
 <?php
-include '../header.php';
+include 'header.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,10 +27,10 @@ include '../header.php';
             <tbody>
                 <?php
                 // database connection file
-                include "../classes/dbh.php";
+                include "classes/dbh.php";
 
                 // Include Car class file
-                include "../classes/car.php";
+                include "classes/car.php";
 
                 try {
                     // Create a new Car object

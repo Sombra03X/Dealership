@@ -16,14 +16,13 @@ SESSION_START();
             <li><a href="index.php">Home</a></li>
             <li><a href="createCar.php">Create Car</a></li>
             <li><a href="readCar.php">Read Car</a></li>
-            <li><a href="createUser.php">Register</a></li>
-            <li><a href="login.php">Login</a></li>
             <?php 
             if (!isset($_SESSION['email'])) {
                 echo "<li><a href='createUser.php'>Register</a></li>";
+                echo "<li><a href='login.php'>Login</a></li>";
             } else {
                 echo "<li>User Email: " . $_SESSION["email"] . "</li>";
-                echo "<li><a href='classes/logout.php'>Logout</a></li>";
+                echo "<li><a href='logout.php'>Logout</a></li>";
             }
             ?>
         </ul>

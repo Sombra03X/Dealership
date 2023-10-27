@@ -1,5 +1,5 @@
 <?php
-require '../header.php';
+require 'header.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require "../classes/Users.php";	    // connects to the OOP file

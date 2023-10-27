@@ -177,6 +177,9 @@ class User
                 if ($user['role'] == 0){
                     echo'Admin';
                 }
+                else{
+                    echo'Client';
+                }
             }
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
