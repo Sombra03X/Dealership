@@ -1,6 +1,8 @@
 <?php
 include 'header.php';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// check permissions
+if (isset($_SESSION['email']) && $_SESSION['role'] == '0') {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Require the car class definition and database connection
     require_once 'classes/dbh.php';
     require_once 'classes/car.php';
@@ -22,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // redirect to readCar.php
     ?>
-    <main>
+    <main class="dark">
         <p>Car record created successfully.</p>
         <br>
         <a class="button" href='readCar.php'>Back to car list</a>
@@ -35,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <title>Lamborghini - Create</title>
 </head>
+
 	<h1>Create Car</h1>
 	<p>
 		Please fill in this form to create a car.
@@ -62,7 +65,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="description">Description:</label>
             <textarea id="description" name="description" required></textarea><br>
 
-            <a href="../index.php" class="button">Cancel</a>
+            <a href="index.php" class="button">Cancel</a>
             <br>
             <button type="submit" name="Create Car">Create car</button>
         </form>
+    
+    </body>
+</html>
+<?php
+}
+else {
+    echo "<p>You don't have permission to access this page.</p><br>";
+    echo "<a class='button' href='index.php'>Back to home</a>";
+}
+

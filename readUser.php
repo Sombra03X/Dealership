@@ -20,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 if (!isset($_SESSION['email'])) {
-    echo '<h2>If you are a user, please login at <a href="Login.php">our login page</a>. If not, please return to the <a href="Home.php">main page</a></h2>.';
+    echo '<h1>If you are a user, please login at <a href="Login.php">our login page</a>. If not, please return to the <a href="Home.php">main page</a></h1>.';
 } else {
-    echo '<h2>Profile Check/Update</h2>';
+    echo '<h1>Profile Check/Update</h1>';
     
     $user = new User();
     $user->readUser();

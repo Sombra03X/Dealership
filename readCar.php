@@ -9,7 +9,7 @@ include 'header.php';
     <title>Car Listing</title>
 </head>
 <body>
-    <main>
+    
         <h1>Car Listing</h1>
         <table>
             <thead>
@@ -48,20 +48,20 @@ include 'header.php';
                         echo "<td>" . $car['color'] . "</td>";
                         echo "<td> € " . $car['price'] . "</td>";
                         echo "<td>" . $car['description'] . "</td>";
-                        echo "<td> <img id='img' src='" . $car['image'] . "'></td>";
+                        echo "<td> <a target='_blank' href='" . $car['image'] . "' ><img id='img' src='" . $car['image'] . "'></a></td>";
                         
                         // Add Update and Delete buttons with links to appropriate actions
                         echo '<td>';
                         if (isset($_SESSION['email']) && $_SESSION['role'] == '0') {
-                        echo '<a href="updateCar.php?id=' . $car['id'] . '">Update</a>';
+                        echo '<a href="updateCar.php?id=' . $car['id'] . '"><p>Update</p></a>';
                         echo ' | ';
-                        echo '<a href="deleteCar.php?id=' . $car['id'] . '">Delete</a>';
+                        echo '<a href="deleteCar.php?id=' . $car['id'] . '"><p>Delete</p></a>';
                         }
                         else if (isset($_SESSION['email']) && $_SESSION['role'] == '1') {
-                            echo '<a href="">Schedule appointment</a>';
+                            echo '<a href=""><p>Schedule appointment</p></a>';
                         }
                         else {
-                            echo '<a href="login.php">Login here to schedule an appointment</a>';}
+                            echo '<a href="login.php"><p>Login here to schedule an appointment</p></a>';}
                         echo '</td>';
                         
                         echo "</tr>";
@@ -72,6 +72,6 @@ include 'header.php';
                 ?>
             </tbody>
         </table>
-    </main>
+    
 </body>
 </html>

@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f2f2f2;
+  background-image: url(https://i.pinimg.com/originals/54/41/bb/5441bbda8700540e9263864235b213e0.jpg);
 }
 
 #nav {
@@ -31,39 +31,60 @@ a {
   color: #333;
 }
 
+:root {
+  --background-color: rgba(255, 255, 255, 0.8);
+  --header-color: #333;
+  --text-color: #666;
+  --transition-duration: 0.6s;
+  transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+.dark-mode {
+  --background-color: rgba(37, 37, 37, 0.8);
+  --header-color: #fff;
+  --text-color: #ccc;
+  --table-bg: rgba(37, 37, 37, 0);
+  --table-text: #ccc;
+  --form-bg: rgba(37, 37, 37, 0);
+  --form-text: #000;
+  --form-label: #fff;
+}
+
 main {
   text-align: center;
   max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--background-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  transition: background-color var(--transition-duration);
 }
-
-h1 {
+main h1 {
   font-size: 36px;
-  color: #333;
+  color: var(--header-color);
+  transition: color var(--transition-duration);
 }
-
-p {
+main p {
   font-size: 18px;
   line-height: 1.6;
-  color: #666;
+  color: var(--text-color);
+  transition: color var(--transition-duration);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  background-color: var(--table-bg);
 }
-
-th {
+table th {
   border-bottom: 3px solid rgb(123, 123, 123);
+  color: var(--table-text);
 }
-
-td {
+table td {
   padding: 10px;
   border-bottom: 3px solid rgb(123, 123, 123);
+  color: var(--table-text);
 }
 
 #img {
@@ -76,28 +97,29 @@ form {
   flex-direction: column;
   max-width: 400px;
   margin: 0 auto;
+  background-color: var(--form-bg); /* Apply dark mode background color */
 }
-
-label {
+form label {
   font-weight: bold;
   margin-bottom: 0.5rem;
   width: 100%;
+  color: var(--form-label);
 }
-
-input[type=text],
-input[type=number],
-input[type=email],
-input[type=password],
-input[type=tel],
-textarea {
+form input[type=text],
+form input[type=number],
+form input[type=email],
+form input[type=password],
+form input[type=tel],
+form textarea {
   padding: 0.5rem;
   margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
+  background-color: #fff;
+  color: var(--form-text);
 }
-
-button {
+form button {
   background-color: gray;
   color: #fff;
   padding: 0.5rem 1rem;
@@ -109,17 +131,17 @@ button {
   text-align: center;
   transition: background-color 0.3s;
 }
-button a {
+form button a {
   text-decoration: none;
   color: #fff;
 }
-button + button {
+form button + button {
   background-color: #ccc;
 }
-button:hover {
+form button:hover {
   background-color: #676767;
 }
-button button[type=submit] {
+form button button[type=submit] {
   margin-top: 1rem;
 }
 

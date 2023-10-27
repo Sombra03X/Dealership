@@ -18,6 +18,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['email'] = $email;
         $_SESSION['role'] = $user['role'];
         header("location: index.php");
+        ?>
+        
+            <p>Login successful.</p>
+            <br>
+            <a class="button" href='index.php'>Back to home</a>
+        
+        <?php
     } else {
         // Invalid login credentials
         ?>
