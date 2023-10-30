@@ -10,5 +10,5 @@ $phone =             $_POST["phone"];
 
 // maken object ---------------------------------------------------
 $user = new User($firstname, $lastname, $password, $email, $phone); // creates the object
-$user->createUser();		//
+$user->createUser();
 ?>

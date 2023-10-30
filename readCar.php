@@ -1,16 +1,11 @@
 <?php
 include 'header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Listing</title>
+    <title>Car List</title>
 </head>
 <body>
-    
-        <h1>Car Listing</h1>
+    <h1>Car List</h1>
         <table>
             <thead>
                 <tr>
@@ -48,7 +43,7 @@ include 'header.php';
                         echo "<td>" . $car['color'] . "</td>";
                         echo "<td> € " . $car['price'] . "</td>";
                         echo "<td>" . $car['description'] . "</td>";
-                        echo "<td> <a target='_blank' href='" . $car['image'] . "' ><img id='img' src='" . $car['image'] . "'></a></td>";
+                        echo "<td><img id='img' src='" . $car['image'] . "'></td>";
                         
                         // Add Update and Delete buttons with links to appropriate actions
                         echo '<td>';

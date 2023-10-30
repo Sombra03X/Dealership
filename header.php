@@ -30,6 +30,7 @@ if (isset($_SESSION['theme'])) {
             <?php
             if (isset($_SESSION['email']) && $_SESSION['role'] == '0') {
             echo "<li><a href='createCar.php'>Create Car</a></li>";
+            echo "<li><a href='readAllUsers.php'>User List</a></li>";
             }
             ?>
             <li><a href="readCar.php">Lamborghini Models</a></li>

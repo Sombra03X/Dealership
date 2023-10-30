@@ -1,5 +1,6 @@
 <?php
 include 'header.php';
+
 // check permissions
 if (isset($_SESSION['email']) && $_SESSION['role'] == '0') {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

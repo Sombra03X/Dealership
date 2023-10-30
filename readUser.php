@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone =             $_POST["phone"];
     
     // maken object ---------------------------------------------------
-    $user = new User($firstname, $lastname, $password, $email, $phone, $id); // creates the object
+    $user = new User($firstname, $lastname, $password, $email, $phone, $id, $conn); // creates the object
     $user->updateUser($id);		//
 }
 

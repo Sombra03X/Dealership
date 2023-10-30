@@ -9,11 +9,12 @@ class User
     protected $phone;
     protected $createdat;
     protected $role;
+    private $conn;
     
     // functions ------------------------------------------------
     
     // constructor
-    public function __construct($firstname=NULL, $lastname=NULL, $password=NULL, $email=NULL, $phone=NULL, $createdat=NULL, $role=NULL)
+    public function __construct($firstname=NULL, $lastname=NULL, $password=NULL, $email=NULL, $phone=NULL, $createdat=NULL, $role=NULL, $conn=NULL)
     {
         $this->firstname=$firstname;
         $this->lastname=$lastname;
@@ -22,6 +23,7 @@ class User
         $this->phone=$phone;
         $this->createdat=$createdat;
         $this->role=$role;
+        $this->conn=$conn;
     }
     
     // setters
@@ -116,13 +118,10 @@ class User
             if ($user) {
                 // if email in use, give warning and redirect to ../index (gotta be changed)
                 echo '' ?>
-<<<<<<< HEAD
 		        <script type="text/javascript">
                     window.open("index.php","_self");
                     alert("Email is already taken!");
                 </script>
-=======
->>>>>>> 8ffb4251dd52262a1799d9599e48280b98bd835b
                 <?php ;
 		    } else {
 		        // prepare statement to insert into database
@@ -232,6 +231,48 @@ class User
             echo "Connection failed: " . $e->getMessage();
         }
     }
+
+    public function readUsers() {
+        // define the query
+        $sql = "SELECT * FROM users";
+
+        try {
+            // prepare the statement
+            $stmt = $this->conn->prepare($sql);
+
+            // execute the prepared statement
+            $stmt->execute();
+
+            // fetch the results
+            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // return the results
+            return $users;
+        } catch (PDOException $e) {
+            // handle exceptions
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function updateUserRole($id, $new_role) {
+        // define the query
+        $sql = "UPDATE users SET role = :role WHERE id = :id";
+        try{
+            // prepare the statement
+            $stmt = $this->conn->prepare($sql);
+
+            // bind parameters to the placeholder
+            $stmt->bindParam(":role", $new_role);
+            $stmt->bindParam(":id", $id);
+
+            // execute the prepared statement
+            $stmt->execute();
+        } catch (PDOException $e) {
+            // handle exceptions
+            echo "Error: " . $e->getMessage();
+        }
+    }
+    
 
     public static function getUserByEmail($email) {
         require "dbh.php";
