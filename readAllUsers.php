@@ -19,7 +19,9 @@ if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] 
                 <th>phone</th>
                 <th>created_at</th>
                 <th>role</th>
-                <th>Action</th>
+                <?php if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] == '1')) {
+                 echo "<th>Action</th>";
+                } ?>
             </tr>
         </thead>
         <tbody>
@@ -57,7 +59,7 @@ if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] 
                         echo '<a href="demote.php?id=' . $user['id'] . '"><p>Demote to User</p></a>';
                     }
                     else {
-                        echo '<p>Not allowed</p>';
+                        echo '';
                     }
                     echo "</td>
                     </tr>";

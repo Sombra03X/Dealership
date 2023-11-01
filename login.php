@@ -7,7 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $password = $_POST["password"];
 
     // Fetch the user by email from the database
     $user = User::getUserByEmail($email);
@@ -17,6 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //session_start();
         $_SESSION['email'] = $email;
         $_SESSION['role'] = $user['role'];
+        $_SESSION['firstname'] = $user['firstname'];
+        $_SESSION['lastname'] = $user['lastname'];
+
         header("location: index.php");
     } else {
         // Invalid login credentials

@@ -47,13 +47,15 @@ include 'header.php';
                         
                         // Add Update and Delete buttons with links to appropriate actions
                         echo '<td>';
-                        if (isset($_SESSION['email']) && $_SESSION['role'] == '0') {
+                        if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] == '1')) {
                         echo '<a href="updateCar.php?id=' . $car['id'] . '"><p>Update</p></a>';
                         echo ' | ';
                         echo '<a href="deleteCar.php?id=' . $car['id'] . '"><p>Delete</p></a>';
                         }
-                        else if (isset($_SESSION['email']) && $_SESSION['role'] == '1') {
-                            echo '<a href=""><p>Schedule appointment</p></a>';
+                        else if (isset($_SESSION['email']) && $_SESSION['role'] == '2') {
+                            echo '<a href="createAppointment.php?model=' . $car['model'] . '&year=' . $car['year'] . '">
+                            <p>Schedule appointment</p></a>';
+
                         }
                         else {
                             echo '<a href="login.php"><p>Login here to schedule an appointment</p></a>';}

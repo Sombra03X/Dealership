@@ -19,7 +19,6 @@ if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] 
 
         // Redirect back 
         ?>
-        <main class="dark">
             <p>User promoted.</p>
             <br>
             <a class="button" href='readAllUsers.php'>Back to user list</a>

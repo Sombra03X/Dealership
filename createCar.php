@@ -25,11 +25,9 @@ if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] 
 
     // redirect to readCar.php
     ?>
-    <main class="dark">
         <p>Car record created successfully.</p>
         <br>
         <a class="button" href='readCar.php'>Back to car list</a>
-    </main>
     <?php
     exit();
 }
