@@ -1,5 +1,7 @@
 <?php
 include "header.php";
+// Check permissions
+if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] == '1')) {
 ?> 
 
 <head>
@@ -46,9 +48,16 @@ include "header.php";
                     <td>" . $user['createdat'] . "</td>
                     <td>" . $user['role'] . "</td>
                     <td>";
-                    if (isset($_SESSION['email']) && $_SESSION['role'] == '0' && $user['role'] == '1') {
+                    if (isset($_SESSION['email']) && $_SESSION['role'] == '0' && $user['role'] == '2') {
                         // promote to admin
                         echo '<a href="promote.php?id=' . $user['id'] . '"><p>Promote to Admin</p></a>';
+                    }
+                    else if (isset($_SESSION['email']) && $_SESSION['role'] == '0' && $user['role'] == '1') {
+                        // demote to user
+                        echo '<a href="demote.php?id=' . $user['id'] . '"><p>Demote to User</p></a>';
+                    }
+                    else {
+                        echo '<p>Not allowed</p>';
                     }
                     echo "</td>
                     </tr>";
@@ -57,3 +66,7 @@ include "header.php";
                 // Handle exceptions
                 echo "Error: " . $e->getMessage();
             }
+        } else {
+            echo "<p>You don't have permission to access this page.</p><br>";
+            echo "<a class='button' href='index.php'>Back to home</a>";
+        }

@@ -1,7 +1,7 @@
 <?php
 include "header.php";
 // Check if the user is logged in and has admin privileges
-if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] == '1')) {
+if (isset($_SESSION['email']) && $_SESSION['role'] == '0') {
     try {
     // Check if the user_id parameter is set in the URL
     if (isset($_GET['id'])) {
@@ -15,12 +15,12 @@ if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] 
         $user = new User(null, null, null, null, null, null, null, $conn);
 
         // Update the user's role
-        $user->updateUserRole($id, 1);
+        $user->updateUserRole($id, 2);
 
         // Redirect back 
         ?>
         <main class="dark">
-            <p>User promoted.</p>
+            <p>User demoted.</p>
             <br>
             <a class="button" href='readAllUsers.php'>Back to user list</a>
         <?php

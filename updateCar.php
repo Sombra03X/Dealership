@@ -1,5 +1,8 @@
 <?php
 include "header.php";
+// check permissions
+if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] == '1')) {
+
 require_once "classes/dbh.php";
 require_once "classes/car.php";
 
@@ -101,3 +104,8 @@ if (isset($_GET['id'])) {
 </main>
 </body>
 </html>
+<?php
+} else {
+    echo "<p>You don't have permission to access this page.</p><br>";
+    echo "<a class='button' href='index.php'>Back to home</a>";
+}

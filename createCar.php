@@ -2,7 +2,7 @@
 include 'header.php';
 
 // check permissions
-if (isset($_SESSION['email']) && $_SESSION['role'] == '0') {
+if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] == '1')) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Require the car class definition and database connection
     require_once 'classes/dbh.php';

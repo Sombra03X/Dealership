@@ -28,7 +28,7 @@ if (isset($_SESSION['theme'])) {
         <ul>
             <li><a href="index.php">Home</a></li>
             <?php
-            if (isset($_SESSION['email']) && $_SESSION['role'] == '0') {
+            if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] == '1')) {
             echo "<li><a href='createCar.php'>Create Car</a></li>";
             echo "<li><a href='readAllUsers.php'>User List</a></li>";
             }
@@ -40,10 +40,12 @@ if (isset($_SESSION['theme'])) {
                 echo "<li><a href='login.php'>Login</a></li>";
             } else {
                 echo "<li><a href='readUser.php'>User Email: " . $_SESSION["email"] . "</a></li>";
-                if ($_SESSION['role'] == '1') {
+                if ($_SESSION['role'] == '2') {
                     echo "<li>Client</li>";
-                } else {
+                } else if ($_SESSION['role'] == '1') {
                     echo "<li>Admin</li>";
+                } else {
+                    echo "<li>Owner</li>";
                 }
                 echo "<li><a href='readUser.php'>Account info</a></li>";
                 echo "<li><a href='logout.php'>Logout</a></li>";
