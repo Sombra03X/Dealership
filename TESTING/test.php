@@ -102,5 +102,3 @@ myModal.onmousedown = function() {
 
 </body>
 </html>
-
-
