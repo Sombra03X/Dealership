@@ -222,7 +222,7 @@ class User
               <input type="submit" value="Update: this will log you out!">
             </form>
           <br>
-          <form action="DeleteUser.php" method="post">
+			<form action="<?php $_SERVER["PHP_SELF"]?>" method="delete">
 			<input type="submit" value="Delete Account">
 		  </form>
 				<?php
@@ -340,6 +340,7 @@ class User
             header("location: ../logout.php");
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
+            header("location: ../logout.php");
         }
     }
 }

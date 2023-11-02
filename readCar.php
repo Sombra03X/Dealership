@@ -6,6 +6,11 @@ include 'header.php';
 </head>
 <body>
     <h1>Car List</h1>
+    <?php 
+    if (!isset($_SESSION["email"])){
+        echo '<a href="login.php"><p>Login here to schedule an appointment</p></a>';
+    }
+    ?>
         <table>
             <thead>
                 <tr>
@@ -16,7 +21,11 @@ include 'header.php';
                     <th>Price</th>
                     <th>Description</th>
                     <th>Image</th>
-                    <th>Action</th>
+    <?php 
+    if (isset($_SESSION["email"])){
+        echo '<th>Action</th>';
+    }
+    ?>
                 </tr>
             </thead>
             <tbody>
@@ -46,20 +55,19 @@ include 'header.php';
                         echo "<td><img id='img' src='" . $car['image'] . "'></td>";
                         
                         // Add Update and Delete buttons with links to appropriate actions
-                        echo '<td>';
-                        if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] == '1')) {
-                        echo '<a href="updateCar.php?id=' . $car['id'] . '"><p>Update</p></a>';
-                        echo ' | ';
-                        echo '<a href="deleteCar.php?id=' . $car['id'] . '"><p>Delete</p></a>';
+                        if (isset($_SESSION['email'])){
+                            echo '<td>';
+                            if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] == '1')) {
+                                echo '<a href="updateCar.php?id=' . $car['id'] . '"><p>Update</p></a>';
+                                echo ' | ';
+                                echo '<a href="deleteCar.php?id=' . $car['id'] . '"><p>Delete</p></a>';
+                            }
+                            else if (isset($_SESSION['email']) && $_SESSION['role'] == '2') {
+                                echo '<a href="createAppointment.php?model=' . $car['model'] . '&year=' . $car['year'] . '">
+                                      <p>Schedule appointment</p></a>';
+                            }
+                            echo '</td>';
                         }
-                        else if (isset($_SESSION['email']) && $_SESSION['role'] == '2') {
-                            echo '<a href="createAppointment.php?model=' . $car['model'] . '&year=' . $car['year'] . '">
-                            <p>Schedule appointment</p></a>';
-
-                        }
-                        else {
-                            echo '<a href="login.php"><p>Login here to schedule an appointment</p></a>';}
-                        echo '</td>';
                         
                         echo "</tr>";
                     }
