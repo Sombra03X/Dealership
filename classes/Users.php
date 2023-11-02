@@ -172,9 +172,12 @@ class User
             
             {
                 if ($user['role'] == 0){
+                    $role = "Owner";
+                }
+                else if ($user['role'] == 1){
                     $role = "Admin";
                 }
-                else{
+                else {
                     $role = "Client";
                 }
                 echo ''?>

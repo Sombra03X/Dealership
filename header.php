@@ -42,10 +42,13 @@ if (isset($_SESSION['theme'])) {
                 echo "<li><a href='readUser.php'>User Email: " . $_SESSION["email"] . "</a></li>";
                 if ($_SESSION['role'] == '2') {
                     echo "<li>Client</li>";
+                    echo "<li><a href='readAppointment.php'>My Appointment</a></li>";
                 } else if ($_SESSION['role'] == '1') {
                     echo "<li>Admin</li>";
+                    echo "<li><a href='readAllAppointments.php'>All Appointments</a></li>";
                 } else {
                     echo "<li>Owner</li>";
+                    echo "<li><a href='readAllAppointments.php'>All Appointments</a></li>";
                 }
                 echo "<li><a href='readUser.php'>Account info</a></li>";
                 echo "<li><a href='logout.php'>Logout</a></li>";

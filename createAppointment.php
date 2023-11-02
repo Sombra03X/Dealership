@@ -1,26 +1,32 @@
 <?php
+include "header.php";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Require the car class definition and database connection
     require_once 'classes/dbh.php';
     require_once 'classes/appointment.php';
 
     // Retrieve form data
-    $user_name = $_POST['naam'];
-    $user_email = $_POST['email'];
-    $user_phone = $_POST['phone'];
-    $car_model = $_POST['model'];
-    $car_year = $_POST['year'];
-    $appointment_date = $_POST['dateappo'];
+    $user_name = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+    $user_email = $_SESSION['email'];
+    $car_model = $_GET['model'];
+    $car_year = $_GET['year'];
+    $car_image = $_GET['image'];
+    $appointment_date = $_POST['appointment_date'];
     
 
     // Create a new car object
-    $appointment = new Appointment($user_name, $user_email, $user_phone, $car_model, $car_year, $appointment_date, null, $conn);
+    $appointment = new Appointment(null, $user_name, $user_email, $car_model, $car_year, $car_image, $appointment_date, $conn);
 
     // Call the create method to insert the car record into the database
-    $appointment->createAppo();
+    $appointment->create();
 
     // Redirect to a success page or display a success message
-    header("../index.php");
+    ?>
+    <p>Appointment scheduled!</p>
+    <br>
+    <a class="button" href="readAppointment.php">Check your appointment</a>
+    <?php
     exit();
 }
 ?>
@@ -33,27 +39,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Lamborghini - Create</title>
 </head>
     <body>
-        <form action="<?php $_SERVER["PHP_SELF"]?>" method="post">
-            <label for="naam">Naam:</label>
-            <input type="text" id="naam" name="naam" required><br>
-
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" required><br>
-
-            <label for="phone">mobil:</label>
-            <input type="text" id="phone" name="phone" required><br>
-
-            <label for="model">Model:</label>
-            <input type="text" id="model" name="model" required><br>
-
-            <label for="year">jaar:</label>
-            <input type="number" id="year" name="year" required><br>
-
-            <label for="dateappo"> datum:</label>
-            <input type="date" id="dateappo" name="dateappo" required><br>
+        <form action="<?php $_SERVER["PHP_SELF"]?>" method="POST">
+            <h1>Schedule appointment</h1>
+            <br>
+            <label for="appointment_date"> date:</label>
+            <input type="datetime-local" id="appointment_date" name="appointment_date" required><br>
 
             
-            <input type="submit" value="Create Appointment">
+            <button type="submit" value="Create Appointment">Schedule Appointment</button>
         </form>
 
     </body>

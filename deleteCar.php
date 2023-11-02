@@ -25,10 +25,8 @@ if (isset($_GET['id'])) {
 
             // Redirect to a page after deletion
             ?>
-            <main>
             <p>Car record deleted successfully.</p> <br>
             <a class="button" href='readCar.php'>Back to car list</a>
-            </main>
             <?php
             exit();
         }
@@ -39,24 +37,14 @@ if (isset($_GET['id'])) {
     echo "Car ID not provided.";
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Car Record</title>
-</head>
-<body>
         <h1>Delete Car Record</h1>
-        <form action="" method="post">
+        <form action="" method="post"   >
             <p>Are you sure you want to delete this car record?</p>
             <a class="button" href="readCar.php">Cancel</a>
             <br>
             <button type="submit" name="delete">Delete Car</button>
         </form>
-</body>
-</html>
 <?php
 } else {
     echo "<p>You don't have permission to access this page.</p><br>";

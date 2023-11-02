@@ -2,7 +2,7 @@
 include 'header.php';
 ?>
 <head>
-    <title>Car List</title>
+    <title>Lamborghini - Car List</title>
 </head>
 <body>
     <h1>Car List</h1>
@@ -41,7 +41,7 @@ include 'header.php';
                         echo "<td>" . $car['model'] . "</td>";
                         echo "<td>" . $car['year'] . "</td>";
                         echo "<td>" . $car['color'] . "</td>";
-                        echo "<td> € " . $car['price'] . "</td>";
+                        echo "<td> €" . $car['price'] . ",-</td>";
                         echo "<td>" . $car['description'] . "</td>";
                         echo "<td><img id='img' src='" . $car['image'] . "'></td>";
                         
@@ -53,8 +53,8 @@ include 'header.php';
                         echo '<a href="deleteCar.php?id=' . $car['id'] . '"><p>Delete</p></a>';
                         }
                         else if (isset($_SESSION['email']) && $_SESSION['role'] == '2') {
-                            echo '<a href="createAppointment.php?model=' . $car['model'] . '&year=' . $car['year'] . '">
-                            <p>Schedule appointment</p></a>';
+                            echo '<a href="createAppointment.php?model=' . $car['model'] . '&year=' . $car['year'] . '&image=' . 
+                            $car['image'] . '"><p>Schedule appointment</p></a>';
 
                         }
                         else {

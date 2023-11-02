@@ -50,7 +50,7 @@ if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] 
                     <td>" . $user['createdat'] . "</td>
                     <td>" . $user['role'] . "</td>
                     <td>";
-                    if (isset($_SESSION['email']) && $_SESSION['role'] == '0' && $user['role'] == '2') {
+                    if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] == '1') && $user['role'] == '2') {
                         // promote to admin
                         echo '<a href="promote.php?id=' . $user['id'] . '"><p>Promote to Admin</p></a>';
                     }

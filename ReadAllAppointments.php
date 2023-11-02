@@ -12,16 +12,15 @@ include "header.php";
         // Include Appointment class file
         include "classes/appointment.php";
 
+        // check permissions
+        if (isset($_SESSION['email']) && ($_SESSION['role'] == '0' || $_SESSION['role'] == '1')) {
+
         try {
             // Create a new Appointment object
             $appointment = new Appointment(null, null, null, null, null, null, null, $conn);
 
-            // set user name for which you want to see the appointment of
-            $user_name = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
-            $appointment->setUserName($user_name);
-
             // Call the read function
-            $appointments = $appointment->read();
+            $appointments = $appointment->readAll();
 
             if ($appointments) {
                 ?>
@@ -46,7 +45,7 @@ include "header.php";
                 echo "<td>" . $appointment['user_email'] . "</td>";
                 echo "<td>" . $appointment['model'] . "</td>";
                 echo "<td>" . $appointment['year'] . "</td>";
-                echo "<td><img id='img' src='" . $appointment['image'] . "'></td>";
+                echo "<td><img id='img2' src='" . $appointment['image'] . "'></td>";
                 echo "<td>" . $appointment['appointment_date'] . "</td>";
                 echo '<td><a href="deleteAppointment.php?id=' . $appointment['id'] . '"><p>Delete</p></a></td>';
                 echo "</tr>";
@@ -63,3 +62,10 @@ include "header.php";
         ?>
     </tbody>
 </table>
+<?php
+}
+else {
+    echo "<p>You don't have permission to view this page</p>";
+    echo "<br>";
+    echo "<a class='button' href='readCar.php'>Schedule an appointment</a>";
+}
