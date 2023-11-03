@@ -225,7 +225,7 @@ class User
               <input type="submit" value="Update: this will log you out!">
             </form>
           <br>
-			<form action="<?php $_SERVER["PHP_SELF"]?>" method="delete">
+			<form action="deleteUser.php" method="delete">
 			<input type="submit" value="Delete Account">
 		  </form>
 				<?php
@@ -338,12 +338,11 @@ class User
 									 WHERE email = :email
 								 ");
             // variabele in de statement zetten
-            $sql->bindParam(":username", $email);
+            $sql->bindParam(":email", $email);
             $sql->execute();
-            header("location: ../logout.php");
+            header("location: logout.php");
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
-            header("location: ../logout.php");
         }
     }
 }
