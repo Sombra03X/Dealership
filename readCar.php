@@ -63,7 +63,7 @@ include 'header.php';
                                 echo '<a href="deleteCar.php?id=' . $car['id'] . '"><p>Delete</p></a>';
                             }
                             else if (isset($_SESSION['email']) && $_SESSION['role'] == '2') {
-                                echo '<a href="createAppointment.php?model=' . $car['model'] . '&year=' . $car['year'] . '">
+                                echo '<a href="createAppointment.php?model=' . $car['model'] . '&year=' . $car['year'] . '&image=' . $car['image'] . '">
                                       <p>Schedule appointment</p></a>';
                             }
                             echo '</td>';
