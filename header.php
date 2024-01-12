@@ -23,7 +23,6 @@ if (isset($_SESSION['theme'])) {
 </script>
 </head>
 <body>
-
     <nav id="nav">
         <ul>
             <li><a href="index.php">Home</a></li>
